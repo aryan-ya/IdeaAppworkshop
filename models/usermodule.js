@@ -20,7 +20,24 @@ const userSchema =  new mongoose.Schema({
       },
       email :{
         type : String,
-        required : true
+        required : true,
+        unique :true,
+        minLength: 10,
+        lowercase : true
+      },
+      userType : {
+        type :String,
+        required : true,
+        default : "CUSTOMER",
+        enum : ["CUSTOMER", "ADMIN"]
+
       }
 
-});
+},{timestamps : true});
+
+
+// define the collection name where it will be stored
+
+ module.exports = mongoose.model("User", userSchema);
+
+
